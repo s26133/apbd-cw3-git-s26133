@@ -18,7 +18,7 @@ public sealed class ZadaniaLinq
     {
         var result = DaneUczelni.Studenci
             .Where(s => s.Miasto == "Warsaw")
-            .Select(s => $"{s.NumerIndeksu} {s.Imie} {s.Nazwisko} {s.Miasto}");
+            .Select(s => $"{s.NumerIndeksu}, {s.Imie} {s.Nazwisko}, {s.Miasto}");
         return result;
     }
 
@@ -54,7 +54,7 @@ public sealed class ZadaniaLinq
         var result = DaneUczelni.Studenci
             .OrderBy(s => s.Nazwisko)
             .OrderBy(s => s.Imie)
-            .Select(s => $"{s.NumerIndeksu} {s.Imie} {s.Nazwisko}");
+            .Select(s => $"{s.NumerIndeksu}, {s.Imie} {s.Nazwisko}");
         return result;
     }
 
@@ -72,7 +72,7 @@ public sealed class ZadaniaLinq
     {
         var result = DaneUczelni.Przedmioty
             .Where(p => p.Kategoria == "Analytics")
-            .Select(p => $"{p.Nazwa} {p.DataStartu}")
+            .Select(p => $"{p.Nazwa}, {p.DataStartu}")
             .FirstOrDefault();
         return [result ?? "Brak przedmiotu kategorii Analytics"];
     }
@@ -161,7 +161,11 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie09_TrzyNajnowszeZapisy()
     {
-        throw Niezaimplementowano(nameof(Zadanie09_TrzyNajnowszeZapisy));
+        var result = DaneUczelni.Zapisy
+            .OrderByDescending(z => z.DataZapisu)
+            .Take(3)
+            .Select(z => $"{z.DataZapisu}, Id studenta: {z.StudentId}, Id Przedmiotu: {z.PrzedmiotId}");
+        return result;
     }
 
     /// <summary>
