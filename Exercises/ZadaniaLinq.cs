@@ -279,7 +279,9 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie15_ProwadzacyILiczbaPrzedmiotow()
     {
-        throw Niezaimplementowano(nameof(Zadanie15_ProwadzacyILiczbaPrzedmiotow));
+        var result = DaneUczelni.Prowadzacy
+            .GroupJoin(DaneUczelni.Przedmioty, pr => pr.Id, p => p.ProwadzacyId, (pr, p) => $"{pr.Imie} {pr.Nazwisko}, {p.Count()}");
+        return result;
     }
 
     /// <summary>
