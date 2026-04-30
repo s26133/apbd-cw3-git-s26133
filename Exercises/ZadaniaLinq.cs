@@ -36,7 +36,7 @@ public sealed class ZadaniaLinq
         var result = DaneUczelni.Studenci
             .Select(s => s.Email);
         return result;
-           
+
     }
 
     /// <summary>
@@ -74,7 +74,7 @@ public sealed class ZadaniaLinq
             .Where(p => p.Kategoria == "Analytics")
             .Select(p => $"{p.Nazwa} {p.DataStartu}")
             .FirstOrDefault();
-        return [result ?? "Brak przedmiotu kategorii Analytics"];         
+        return [result ?? "Brak przedmiotu kategorii Analytics"];
     }
 
     /// <summary>
@@ -91,7 +91,10 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie05_CzyIstniejeNieaktywneZapisanie()
     {
-        throw Niezaimplementowano(nameof(Zadanie05_CzyIstniejeNieaktywneZapisanie));
+        var result = DaneUczelni.Zapisy
+            .Any(z => !z.CzyAktywny);
+
+        return [result ? "Tak" : "Nie"];
     }
 
     /// <summary>
