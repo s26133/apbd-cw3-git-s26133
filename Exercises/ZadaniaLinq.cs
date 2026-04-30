@@ -33,7 +33,10 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie02_AdresyEmailStudentow()
     {
-        throw Niezaimplementowano(nameof(Zadanie02_AdresyEmailStudentow));
+        var result = DaneUczelni.Studenci.
+            Select(s => s.Email);
+        return result;
+           
     }
 
     /// <summary>
