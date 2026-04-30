@@ -109,7 +109,9 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie06_CzyWszyscyProwadzacyMajaKatedre()
     {
-        throw Niezaimplementowano(nameof(Zadanie06_CzyWszyscyProwadzacyMajaKatedre));
+        var result = DaneUczelni.Prowadzacy
+            .All(p => string.IsNullOrEmpty(p.Katedra.Trim()));
+        return [result ? "0" : "1"];
     }
 
     /// <summary>
