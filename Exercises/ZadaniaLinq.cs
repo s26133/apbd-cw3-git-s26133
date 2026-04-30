@@ -16,9 +16,9 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie01_StudenciZWarszawy()
     {
-        var result = DaneUczelni.Studenci.
-            Where(s => s.Miasto == "Warsaw").
-            Select(s => $"{s.NumerIndeksu} {s.Imie} {s.Nazwisko} {s.Miasto}");
+        var result = DaneUczelni.Studenci
+            .Where(s => s.Miasto == "Warsaw")
+            .Select(s => $"{s.NumerIndeksu} {s.Imie} {s.Nazwisko} {s.Miasto}");
         return result;
     }
 
@@ -33,8 +33,8 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie02_AdresyEmailStudentow()
     {
-        var result = DaneUczelni.Studenci.
-            Select(s => s.Email);
+        var result = DaneUczelni.Studenci
+            .Select(s => s.Email);
         return result;
            
     }
@@ -51,7 +51,11 @@ public sealed class ZadaniaLinq
     /// </summary>
     public IEnumerable<string> Zadanie03_StudenciPosortowani()
     {
-        throw Niezaimplementowano(nameof(Zadanie03_StudenciPosortowani));
+        var result = DaneUczelni.Studenci
+            .OrderBy(s => s.Nazwisko)
+            .OrderBy(s => s.Imie)
+            .Select(s => $"{s.NumerIndeksu} {s.Imie} {s.Nazwisko}");
+        return result;
     }
 
     /// <summary>
